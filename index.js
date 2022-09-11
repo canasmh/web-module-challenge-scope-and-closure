@@ -121,9 +121,13 @@ For example: invoking getInningScore(inning) might return this object:
   */
 
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
+function getInningScore(callback) {
 
+  let inningScore = {
+    Home: callback(),
+    Away: callback()
+  };
+  return inningScore;
 }
 
 
@@ -167,9 +171,32 @@ Use the scoreboard function below to do the following:
   "This game will require extra innings: Away 10 - Home 10"
 ] */
 // NOTE: There is no test associated with this code; if your output matches the given example, consider it complete!
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(getInningScore, inning, numInnings) {
+  let scoreBoard = [];
+  let awayScore = 0;
+  let homeScore = 0;
+
+  for (let i = 0; i < numInnings; i++ ) {
+    let currentInning = getInningScore(inning);
+
+    scoreBoard.push(`Inning ${i + 1}: Away ${currentInning.Away} - Home ${currentInning.Home}`)
+
+    awayScore += currentInning.Away;
+    homeScore += currentInning.Home;
+  }
+
+  if (homeScore === awayScore) {
+    scoreBoard.push(`This game will require extra innings: Away ${awayScore} - Home ${homeScore}`)
+  } else {
+    scoreBoard.push(`Final Score: Away ${awayScore} - Home ${homeScore}`)
+  }
+
+  return scoreBoard;
+
 }
+
+
+console.log(scoreboard(getInningScore, inning, 9))
 
 
 
