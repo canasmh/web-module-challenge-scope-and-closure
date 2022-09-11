@@ -30,11 +30,19 @@ console.log('example task:', processFirstItem(['foo','bar'],function(str){return
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
+
+  counter2 increments the count variable that is defined in the global scope. counter1 increments the count variable inside of the
+  counterMaker function.
   
   2. Which of the two uses a closure? How can you tell?
+
+  counter1 because it returns a nested function.
   
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
+
+     counter2 is it more preferable if you need access to the count variable across all scopes. However, if you don't 
+     need to access the count variable outside of the counter function, it would be more efficient to use counter1
 */
 
 // counter1 code
@@ -64,8 +72,10 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(){
+    let inning = Math.floor(Math.random() * 3);
+
+    return inning;
 }
 
 
